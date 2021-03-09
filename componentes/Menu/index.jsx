@@ -17,13 +17,13 @@ const Menu = () =>{
 const styles = StyleSheet.create({
     container: {
         height: 55,
-        backgroundColor: '#9D0DCA',
+        backgroundColor: '#34495E',
         display: 'flex',
         marginBottom: 20,
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20
+        
     },
     image: {
         width: 90,
