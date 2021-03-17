@@ -3,9 +3,12 @@ import { render } from "react-dom";
 import { SafeAreaView, StyleSheet, Text, View,FlatList,VirtualizedList,ScrollView,Row, TouchableOpacity,TextInput,Form, Button,Image, Platform, TouchableHighlight,} from "react-native";
 import Menu from "../../componentes/Menu";
 import ItemProduto from '../../componentes/CardsHome';
+import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
+import produtoServico from '../../../services/produtoServico';
 
-const HomeProduto = () => {
 
+const HomeProduto = ({navigation}) => {
     const [produto, setProduto] = useState([]);
 
     
@@ -18,9 +21,8 @@ const HomeProduto = () => {
     
 
     const Listar = () => {
-        fetch( 'https://5f9a074d9d94640016f70531.mockapi.io/api/produto',{
-            method : 'GET'
-        })
+        produtoServico
+        .listar()
         .then(response => response.json())
         .then(data => {
             setProduto(data)
@@ -30,48 +32,42 @@ const HomeProduto = () => {
     };
     
 
-    const renderItem = (produtos) => {
+    const renderItem = (produto) => {
       return (
           <ItemProduto 
             
-              nome={produtos.item.nome} 
-              imagem={produtos.item.imagem}
-              data={produtos.item.data}
-              preco={produtos.item.preco} />
+              nome={produto.item.nome} 
+              imagem={produto.item.imagem}
+              data={produto.item.data}
+              preco={produto.item.preco}
+              
+              />
       )
     };
 
     return(
-        <View>
+       <>
         <Menu/>
-
-        <SafeAreaView style={{flex:1}}>
-        <FlatList
         
-        data={produto}
-        numColumns={2}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        />
-        </SafeAreaView>    
-        </View>
-    )
-    
-    
+        <SafeAreaView style={styles.container}>
+        <FlatList
+         data={produto}
+         numColumns={2}
+         renderItem={renderItem}
+         keyExtractor={item => item.id}
+         
+         />
+        </SafeAreaView>  
+         
+        </>   
+    )  
 };
 const styles = StyleSheet.create({
 
-
-    display:{
-        display: "flex",
+    container: {
         flex: 1,
-        flexDirection: 'row',
-        padding: "2%",
-        justifyContent: 'space-between',
-        marginTop: "-5px",
-        
-
-    },
+        justifyContent: 'space-around',
+      },
   })
 
   

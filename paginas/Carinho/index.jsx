@@ -41,13 +41,14 @@ const Carinho = () => {
     };
 
     return(
-        <View>
+        <>
         <Menu/>
         <View style={styles.subTitulo}>
             <h2 style={{color: "white",fontFamily: "revert",}}>Minhas reservas</h2>
         </View>
-
-        <SafeAreaView style={{flex:1}}>
+        <>
+        <ScrollView>
+        <SafeAreaView style={{flex:0.5}}>
         <FlatList
         
         data={produto}
@@ -55,8 +56,10 @@ const Carinho = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         />
-        </SafeAreaView>    
-        </View>
+        </SafeAreaView>  
+        </ScrollView>  
+        </>
+        </>
     )
     
     

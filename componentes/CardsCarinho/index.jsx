@@ -1,25 +1,25 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, TouchableOpacity, } from "react-native";
 
-const ItemCarinho = (produtos) =>{
+const ItemCarinho = ({produto, navigation}) =>{
 
-    const {nome, imagem, data, preco} = produtos;
+
 
     return(
         <TouchableOpacity style={styles.card}>
             
-            <Image style={styles.cardImage} source={{uri:'https://s3-sa-east-1.amazonaws.com/sensediafiles/marketing/newsletter/2015/09set/SENSEDIA-gamification-apis-600.jpg'}}/>
+            <Image style={styles.cardImage} source={{uri: produto.imagem}}/>
             <hr style={{ width:"1px",height:"80px",backgroundColor:"blank", }}/>
             <View>
-            <Text style={styles.cardText}>{nome}</Text>
-            <Text>{data}</Text>
-            <Text>{preco}</Text>
+            <Text style={styles.cardText}>{produto.nome}</Text>
+            <Text>{produto.data}</Text>
+            <Text>{produto.preco}</Text>
             </View>
             
         </TouchableOpacity>
     )
 };
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
 
     
     
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         height:"50%",
         backgroundColor:"#C4C4C4",
         borderRadius: '10px',
-        marginTop:"10px",
+        marginTop:"2px",
         marginBottom:10,
         display:"flex",
         flex: 1,

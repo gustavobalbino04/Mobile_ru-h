@@ -1,46 +1,43 @@
-import React,{useState} from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity, Alert, Modal,   Pressable,  } from "react-native";
+import React,{ useState} from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity, Alert,   Pressable, } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
 
-const ItemProduto = (produtos) =>{
+
+
+const ItemProduto = ({produto, navigation}) =>{
+
     
-    const {nome, imagem, data, preco} = produtos;
-    return(
 
-        
-        <TouchableOpacity  style={styles.card}>
-           <Image style={styles.cardImage} source={{uri:{imagem}}}/>
-            <Text style={styles.cardText}>{nome}</Text>
+  
+    return(
+        <>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Detail-Produto',{
+          produtos : produtos
+        })}>
+           <Image style={styles.cardImage} source={{uri: produto.imagem}}/>
+            <Text style={styles.cardText}>{produto.nome}</Text>
            
            <View style={styles.display}>
-                <Text>{data}</Text>
-                <Text style={{fontSize: "15px",}}>R${preco}</Text>
+                <Text>{produto.data}</Text>
+                <Text style={{fontSize: "15px",}}>R${produto.preco}</Text>
            </View>
-           
-             
          </TouchableOpacity>
-        )
-        
-               
-    
-
+        </>
+    )
 };
 
 
 
 const styles = StyleSheet.create({
-
-    
-    
     card:{
-        
-        marginRight: "5%",
         width:"47%",
         height:"95%",
         backgroundColor:"#C4C4C4",
         borderRadius: '10px',
-        marginTop:"10px",
+        marginTop:"5px",
         marginBottom:10,
-        
+        marginLeft:"2%",
     },
     cardImage:{
         borderRadius: '10px',
@@ -51,17 +48,20 @@ const styles = StyleSheet.create({
     cardText:{
         padding:"2%",
         fontSize: 18,
-        
     },
     display:{
         flex: 1,
         flexDirection: 'row',
-        
+        padding: "2%",
         justifyContent: 'space-between',
-        marginTop: "-5px",
-
     },
-    centeredView: {
+    container: {
+        flex: 1,
+        backgroundColor: '#9b59b6',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      centeredView: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
