@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup'
 import { Formik, useFormik } from 'formik';
-import ContaServico from '../../../servicos/contaServico';
 import { StyleSheet, Text, KeyboardAvoidingView, Platform, View, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -91,7 +90,7 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3a3a3a',
+        backgroundColor: '#34495E',
         alignItems: 'center',
         justifyContent: 'center',
     },
